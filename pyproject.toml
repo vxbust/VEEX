@@ -1,18 +1,19 @@
 [project]
 name = "veex"
 version = "0.1.0"
-description = "Add your description here"
+description = "A goated CLI"
 readme = "README.md"
 authors = [
-    { name = "vxbustt", email = "syphdocs@gmail.com" }
+    { name = "vxstudio", email = "...@gmail.com" }
 ]
 requires-python = ">=3.14"
 dependencies = [
     "pyfiglet>=1.0.4",
+    "rich>=15.0.0",
 ]
 
 [project.scripts]
-veex = "veex:main"
+veex = "veex.__main__:main"
 
 [build-system]
 requires = ["uv_build>=0.12.23,<0.13.0"]

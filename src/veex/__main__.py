@@ -9,8 +9,8 @@ def main():
         user_input = input("> ").strip()
         is_cmd, command = commands.is_command(user_input)
 
-        if is_cmd and callable(command):
-            result = command(user_input)
+        if is_cmd and command and command["function"]:
+            result = command["function"](user_input)
 
             if result is not None:
                 print(result)

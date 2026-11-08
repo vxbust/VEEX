@@ -10,7 +10,7 @@ def main():
         is_cmd, command = commands.is_command(user_input)
 
         if is_cmd and callable(command):
-            result = command(*user_input.split()[1:])
+            result = command(user_input)
 
             if result is not None:
                 print(result)

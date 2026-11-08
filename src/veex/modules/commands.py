@@ -31,13 +31,29 @@ def ai(user_input):
     ).text} '''
 
 def help(user_input=None):
-    print("Commands: \n")
-    for name, dict in commands.items():
-        print(f"{name} - {dict["description"] or "no description"}, \n  Usage: {dict["usage"] or ""} \n")
+    for name, command in commands.items():
+        print(f"{name:<12} {command['description']}")
+        print(f"{'':12} Usage: {command['usage']}")
 
 def clear(user_input=None):
     command = 'cls' if os.name == 'nt' else 'clear'
     subprocess.run(command, shell=True)
+
+def gen_uuid(user_input=None):
+    return uuid.uuid1()
+
+# Functions
+
+def get_commands():
+    return commands
+
+def is_command(name):
+    words = name.split()
+
+    if words and words[0].lower() in commands:
+        return True, commands[words[0].lower()]
+
+    return False, None
 
 # Commands Table
 commands = {
@@ -69,18 +85,11 @@ commands = {
         "function": clear,
         "description": "clears the terminal",
         "usage": "clear"
-    }
+    },
+
+    "uuid": {
+        "function": gen_uuid,
+        "description": "generates a random UUID",
+        "usage": "uuid"
+    },
 }
-
-# Functions
-
-def get_commands():
-    return commands
-
-def is_command(name):
-    words = name.split()
-
-    if words and words[0].lower() in commands:
-        return True, commands[words[0].lower()]
-
-    return False, None

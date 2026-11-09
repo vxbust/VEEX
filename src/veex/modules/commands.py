@@ -19,15 +19,17 @@ def exit(user_input=None):
 def password(input):
     input_arr = input.split()
 
-    if ( len(input_arr) < 2 ) or ( not input_arr[1].isdigit() ):
-        print("Password length not included or invalid input")
-        return
+    try:
+        length = int(input_arr[1])
 
-    length = input_arr[1]
-    length = int(length)
-    chars = string.ascii_letters + string.digits + "!@#$%^&*"
+        if length < 1:
+            raise ValueError("Length Must be Positive")
 
-    return ''.join(secrets.choice(chars) for _ in range(length))
+        chars = string.ascii_letters + string.digits + "!@#$%^&*"
+        return ''.join(secrets.choice(chars) for _ in range(length))
+    except ValueError as e:
+        print(f"Failed to generate password: {e}")
+    
 
 def ai(user_input):
     try:

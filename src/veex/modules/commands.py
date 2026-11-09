@@ -19,7 +19,7 @@ def exit(user_input=None):
 def password(input):
     input_arr = input.split()
 
-    if ( len(input_arr) < 2 ) or ( not isinstance(input_arr[1], int) ):
+    if ( len(input_arr) < 2 ) or ( not input_arr[1].isdigit() ):
         print("Password length not included or invalid input")
         return
 

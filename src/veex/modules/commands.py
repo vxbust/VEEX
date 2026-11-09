@@ -36,7 +36,7 @@ def ai(user_input):
             contents=user_input
         )
 
-        return response.tex
+        return response.text
     except errors.APIError as e:
         print(f"Encountered API error: {e}")
     else:

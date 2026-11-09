@@ -39,8 +39,6 @@ def ai(user_input):
         return response.text
     except errors.APIError as e:
         print(f"Encountered API error: {e}")
-    else:
-        print("Failed to generate response")
 
 def help(user_input=None):
     for name, command in commands.items():
@@ -52,7 +50,7 @@ def clear(user_input=None):
     subprocess.run(command, shell=True)
 
 def gen_uuid(user_input=None):
-    return uuid.uuid1()
+    return uuid.uuid4()
 
 # Functions
 

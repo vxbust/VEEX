@@ -3,7 +3,7 @@ import string
 import secrets
 import subprocess
 
-from google.genai import Client
+from google.genai import Client, errors
 from dotenv import load_dotenv
 
 import os
@@ -14,21 +14,33 @@ client = Client(api_key=os.getenv("AI_API_KEY"))
 
 # Handleres
 def exit(user_input=None):
-    print("exited")
     raise SystemExit
 
 def password(input):
-    length = input.split()[1]
+    input_arr = input.split()
+
+    if ( len(input_arr) < 2 ) or ( not isinstance(input_arr[1], int) ):
+        print("Password length not included or invalid input")
+        return
+
+    length = input_arr[1]
     length = int(length)
     chars = string.ascii_letters + string.digits + "!@#$%^&*"
 
     return ''.join(secrets.choice(chars) for _ in range(length))
 
 def ai(user_input):
-    return f''' Gemini: {client.models.generate_content(
-        model="gemini-3.6-flash",
-        contents=user_input
-    ).text} '''
+    try:
+        response = client.models.generate_content(
+            model="gemini-3.6-flash",
+            contents=user_input
+        )
+
+        return response.tex
+    except errors.APIError as e:
+        print(f"Encountered API error: {e}")
+    else:
+        print("Failed to generate response")
 
 def help(user_input=None):
     for name, command in commands.items():

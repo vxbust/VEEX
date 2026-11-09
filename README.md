@@ -1,10 +1,11 @@
---AI Was used to help make the README
+--AI Was used to help make the README        
+MOST VERY LIEKLY NOT EVER GONNA TOUCH THIS AGAIN
 
 # VEEX
 
 VEEX is a lightweight terminal-based Python CLI for quick utility commands and Gemini-powered AI interaction.
 
-Version: v0.1.0
+Version: v0.1.1
 
 ## Features
 
@@ -14,6 +15,7 @@ Version: v0.1.0
 - Built-in help command
 - AI command using Gemini
 - Simple interactive CLI loop
+- Error handling (in v 0.1.1)
 
 ## Usage
 
